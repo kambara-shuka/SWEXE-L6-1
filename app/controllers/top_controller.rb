@@ -4,7 +4,7 @@ class TopController < ApplicationController
   end
 
   def login
-    user = User.find_by(uid: params[:uid])
+    user = User.find_by(uid: current_user)
     if user and BCrypt::Password.new(user.pass) == params[:pass]
       #TODO: ログイン成功したことをユーザに知らせる
       session[:login_uid] = user.uid
